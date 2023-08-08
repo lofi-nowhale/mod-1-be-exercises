@@ -60,4 +60,10 @@ RSpec.describe Curator do
       expect(@curator.artists).to eq([@artist_1, @artist_2])
     end
   end
+
+  describe "#find_artist_by_id" do 
+    it "can return the artist by their artist id as passed in" do 
+      expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
+    end
+  end
 end
