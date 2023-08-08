@@ -63,6 +63,9 @@ RSpec.describe Curator do
 
   describe "#find_artist_by_id" do 
     it "can return the artist by their artist id as passed in" do 
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+
       expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
     end
   end
