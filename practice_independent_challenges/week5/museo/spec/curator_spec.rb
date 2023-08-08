@@ -51,4 +51,13 @@ RSpec.describe Curator do
       expect(@curator.photographs).to eq([@photo_1, @photo_2])      
     end
   end
+
+  describe "#add_artist" do
+    it "can add an artist object to the artists array for the curator" do 
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      
+      expect(@curator.artists).to eq([@artist_1, @artist_2])
+    end
+  end
 end
