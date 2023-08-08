@@ -46,10 +46,9 @@ RSpec.describe Curator do
   describe "#add_photograph" do 
     it "can add a photo object to the photographs array for the curator" do
       @curator.add_photograph(@photo_1)
-
       @curator.add_photograph(@photo_2)
-      
-      expect(@curator.photographs).to eq([photo_1, photo_2])      
+
+      expect(@curator.photographs).to eq([@photo_1, @photo_2])      
     end
   end
 end
