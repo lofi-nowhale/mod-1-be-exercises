@@ -69,4 +69,15 @@ RSpec.describe Curator do
       expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
     end
   end
+
+  describe "#art_collection" do 
+    it "can return an array of hashes with artist/photograph pairs" do 
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+
+      expect(@curator.art_collection).to eq([])
+    end
+  end
 end
