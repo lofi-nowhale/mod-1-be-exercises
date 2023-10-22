@@ -27,4 +27,36 @@ RSpec.describe Dock do
 
     expect(@dock.rental_log).to eq({@kayak_1 => @patrick, @kayak_2 => @patrick, @sup_1 => @eugene})
   end
+
+  it "#hours_charged" do
+    2.times{@kayak_1.add_hour}
+    
+    expect(@dock.hours_charged(@kayak_1)).to eq(2)
+    
+    2.times{@kayak_1.add_hour}
+
+    expect(@dock.hours_charged(@kayak_1)).to eq(3)
+
+  end
+
+  it "#amount_to_charge" do
+    2.times{@kayak_1.add_hour}
+
+    expect(@dock.hours_charged(@kayak_1)).to eq(2)
+
+    expect(@dock.amount_to_charge(@kayak_1)).to eq(40)
+
+    2.times{@kayak_1.add_hour}
+
+    expect(@dock.amount_to_charge(@kayak_1)).to eq(60)
+  end
+
+  it "#charge" do
+    @kayak_1.add_hour
+    @kayak_1.add_hour
+    @dock.rent(@kayak_1, @patrick)
+
+    expect(@dock.charge(@kayak_1)).to eq({card_number: "4242424242424242", amount: 40})
+
+  end
 end
