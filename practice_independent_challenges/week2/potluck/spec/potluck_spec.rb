@@ -29,4 +29,52 @@ RSpec.describe Potluck do
       expect(@potluck.dishes.length).to eq(2)
     end
   end
+
+  describe "#get_all_from_category" do
+    before(:each) do
+      @potluck = Potluck.new("7-13-18")
+      @couscous_salad = Dish.new("Couscous Salad", :appetizer)
+      @summer_pizza = Dish.new("Summer Pizza", :appetizer)
+      @roast_pork = Dish.new("Roast Pork", :entre)
+      @cocktail_meatballs = Dish.new("Cocktail Meatballs", :entre)
+      @candy_salad = Dish.new("Candy Salad", :dessert)
+      @bean_dip = Dish.new("Bean Dip", :appetizer)
+
+      @potluck.add_dish(@couscous_salad)      
+      @potluck.add_dish(@summer_pizza)      
+      @potluck.add_dish(@roast_pork)      
+      @potluck.add_dish(@cocktail_meatballs)      
+      @potluck.add_dish(@candy_salad)
+      @potluck.add_dish(@bean_dip)
+    end
+
+    it 'can pull all dishes from a certain category' do
+      expect(@potluck.get_all_from_category(:appetizer)).to eq([@couscous_salad, @summer_pizza, @bean_dip])
+      expect(@potluck.get_all_from_category(:appetizer).first).to eq(@couscous_salad)
+      expect(@potluck.get_all_from_category(:appetizer).first.name).to eq("Couscous Salad")
+    end
+  end
+
+  describe "#menu + #ratio" do
+    before(:each) do
+      @potluck = Potluck.new("7-13-18")
+      @couscous_salad = Dish.new("Couscous Salad", :appetizer)
+      @summer_pizza = Dish.new("Summer Pizza", :appetizer)
+      @roast_pork = Dish.new("Roast Pork", :entre)
+      @cocktail_meatballs = Dish.new("Cocktail Meatballs", :entre)
+      @candy_salad = Dish.new("Candy Salad", :dessert)
+      @bean_dip = Dish.new("Bean Dip", :appetizer)
+
+      @potluck.add_dish(@couscous_salad)      
+      @potluck.add_dish(@summer_pizza)      
+      @potluck.add_dish(@roast_pork)      
+      @potluck.add_dish(@cocktail_meatballs)      
+      @potluck.add_dish(@candy_salad)
+      @potluck.add_dish(@bean_dip)
+    end
+
+    it 'returns a hash of the menu with the category as the key and an array of the dish names as the value' do
+      expect(@potluck.menu).to eq({:appetizers=>["Bean Dip", "Couscous Salad", "Summer Pizza"],:entres=>["Cocktail Meatballs", "Roast Pork"],:desserts=>["Candy Salad"]})
+    end
+  end
 end
