@@ -41,4 +41,17 @@ class Potluck
 
     potluck_menu
   end
+
+  def ratio(category)
+    menu = self.menu
+    total_dishes = @dishes.count
+
+    if category == :appetizer
+      (menu[:appetizers].count / total_dishes.to_f) * 100
+    elsif category == :desserts
+      (menu[:desserts].count / total_dishes.to_f) * 100
+    else 
+      (menu[:entres].count / total_dishes.to_f) * 100
+    end
+  end
 end

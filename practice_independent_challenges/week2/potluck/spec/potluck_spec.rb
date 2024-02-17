@@ -76,5 +76,9 @@ RSpec.describe Potluck do
     it 'returns a hash of the menu with the category as the key and an array of the dish names as the value' do
       expect(@potluck.menu).to eq({:appetizers=>["Bean Dip", "Couscous Salad", "Summer Pizza"],:entres=>["Cocktail Meatballs", "Roast Pork"],:desserts=>["Candy Salad"]})
     end
+
+    it 'returns the ratio of the desired dish to the rest of the dishes' do
+      expect(@potluck.ratio(:appetizer)).to eq(50.0)
+    end
   end
 end
